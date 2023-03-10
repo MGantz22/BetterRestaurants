@@ -1,0 +1,25 @@
+@{
+  Layout = "_Layout";
+}
+@model BetterRestaurants.Models.Cuisine
+@using BetterRestaurants.Models
+
+<h2>Cuisine Details</h2>
+<hr/>
+
+<h3>@Html.DisplayNameFor(model => model.CuisineType): @Html.DisplayFor(model => model.CuisineType)</h3>
+
+@if (@Model.Restaurants.Count == 0)
+{
+  <h3>No Restaurants added to this Cuisine </h3>
+}
+else
+{
+  <h3>Restaurants:</h3>
+  <ul>
+  @foreach (Restaurant restaurant in Model.Restaurants)
+  {
+    <li>@Html.ActionLink($"{restaurant.RestaurantName}", "Details", "Restaurants", new { id = restaurant.RestaurantId })</li>
+  }
+  </ul>
+}
